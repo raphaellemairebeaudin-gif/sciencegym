@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>FORGE</title>
+<meta name="theme-color" content="#080303">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FORGE">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;scrollbar-width:none}
+::-webkit-scrollbar{display:none}
+html,body{margin:0;height:100%;background:#080303;overflow:hidden;overscroll-behavior:none;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+main{position:fixed;inset:0;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);background:radial-gradient(ellipse at 50% 45%,#1c0707,#080303 70%)}
+svg{display:block;width:100%;height:100%;overflow:visible}
+.t{font-family:'Archivo Black','Arial Black',Impact,sans-serif}
+.s{font-family:'Space Grotesk',system-ui,sans-serif}
+.lines,.scan{position:fixed;left:0;right:0;pointer-events:none}
+.lines{inset:0;z-index:5;background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 1px,transparent 1px 3px);opacity:.45}
+.scan{top:0;height:22vh;z-index:4;background:linear-gradient(transparent,rgba(255,59,48,.16),transparent);filter:blur(6px);animation:scan 6s linear infinite}
+.e{animation:up .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i)*.12s)}
+.flow{animation:flow 1.6s linear infinite}
+.wave{animation:wave 2.6s linear infinite}
+.b{fill:none;stroke:#e8918a;stroke-width:2.5;animation:rise var(--d) linear infinite var(--l)}
+.bob{animation:bob 3.6s ease-in-out infinite alternate}
+.bar{transform-box:fill-box;transform-origin:50% 100%;animation:bar var(--d) ease-in-out infinite var(--l)}
+.ecg{animation:ecg 1.8s linear infinite}
+.pl{animation:pulse 2.4s ease-in-out infinite}
+.title{animation:flick 5s infinite}
+.btn{cursor:pointer;transform-box:fill-box;transform-origin:center;transition:transform .12s}
+.btn:active{transform:scale(.97)}
+@keyframes scan{from{transform:translateY(-25vh)}to{transform:translateY(115vh)}}
+@keyframes flow{to{stroke-dashoffset:-52}}
+@keyframes wave{to{transform:translateX(-80px)}}
+@keyframes rise{0%{transform:translateY(0);opacity:0}12%{opacity:.9}100%{transform:translateY(-520px);opacity:0}}
+@keyframes bob{from{transform:translateY(-8px)}to{transform:translateY(10px)}}
+@keyframes bar{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+@keyframes ecg{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}
+@keyframes flick{0%,90%,100%{opacity:1}92%{opacity:.7}94%{opacity:1}97%{opacity:.82}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important}}
+</style>
+</head>
+<body>
+<main>
+<svg viewBox="12 20 672 1448" preserveAspectRatio="xMidYMid meet" role="img" aria-label="FORGE">
+<defs>
+<linearGradient id="tk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f2924"/><stop offset=".55" stop-color="#5c1a18"/><stop offset="1" stop-color="#2d0c0c"/></linearGradient>
+<linearGradient id="bm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff3b30" stop-opacity=".28"/><stop offset="1" stop-color="#ff3b30" stop-opacity="0"/></linearGradient>
+<filter id="gl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<clipPath id="tc"><rect x="182" y="329" width="333" height="670" rx="37"/></clipPath>
+</defs>
+<g fill="none" stroke-linecap="round">
+<g class="e" style="--i:0">
+<path d="M85-80C85 110 175 170 262 282M-60 168C90 160 190 190 212 282M612-80C612 110 525 170 440 282M760 138C600 128 490 190 482 282" stroke="#3a0f0f" stroke-width="16"/>
+<path class="flow" d="M85-80C85 110 175 170 262 282M-60 168C90 160 190 190 212 282M612-80C612 110 525 170 440 282M760 138C600 128 490 190 482 282" stroke="#ff3b30" stroke-width="4" stroke-dasharray="10 16"/>
+</g>
+<g class="e" style="--i:2" stroke="#ff3b30" stroke-width="3">
+<rect x="164" y="277" width="369" height="51" rx="10" fill="#120808"/>
+<rect x="181" y="328" width="335" height="672" rx="38" fill="url(#tk)" filter="url(#gl)"/>
+<g clip-path="url(#tc)" stroke="none">
+<path class="wave" d="M109 385q20-9 40 0t40 0 40 0 40 0 40 0 40 0 40 0 40 0 40 0 40 0 40 0 40 0" fill="none" stroke="#e8918a" stroke-width="3"/>
+<g fill="none">
+<circle class="b" style="--d:5s;--l:0s" cx="245" cy="940" r="6"/><circle class="b" style="--d:7s;--l:-2s" cx="228" cy="900" r="9"/>
+<circle class="b" style="--d:6s;--l:-4s" cx="330" cy="950" r="7"/><circle class="b" style="--d:4.5s;--l:-1s" cx="408" cy="930" r="5"/>
+<circle class="b" style="--d:6.5s;--l:-3s" cx="474" cy="910" r="8"/><circle class="b" style="--d:8s;--l:-5s" cx="381" cy="960" r="9"/><circle class="b" style="--d:5.5s;--l:-2.5s" cx="290" cy="920" r="5"/>
+</g>
+<g class="bob" fill="#130606" stroke="#ff3b30" stroke-width="3" stroke-linejoin="round">
+<path d="M222 530H474" stroke-width="6"/><rect x="236" y="499" width="17" height="61"/><rect x="445" y="499" width="17" height="61"/>
+<polygon points="287,534 306,534 323,626 304,626"/><polygon points="392,534 411,534 394,626 376,626"/>
+<polygon points="305,624 392,624 378,725 318,725"/><circle cx="348" cy="587" r="25"/>
+<rect x="320" y="727" width="27" height="59"/><rect x="351" y="727" width="27" height="59"/>
+</g>
+</g>
+</g>
+<g class="e" style="--i:3" stroke="#ff3b30" stroke-width="3">
+<rect x="157" y="1000" width="383" height="62" rx="12" fill="#120808"/>
+<ellipse class="pl" cx="348" cy="1082" rx="215" ry="18" fill="#5a1a18" stroke="none"/>
+<rect class="pl" x="185" y="1085" width="327" height="175" fill="url(#bm)" stroke="none"/>
+<path d="M257 1066C257 1190 190 1235-60 1218M450 1066C450 1190 520 1240 760 1205" filter="url(#gl)"/>
+</g>
+<g class="e" style="--i:4" stroke="#ff3b30" stroke-width="2.5" fill="#100606">
+<rect x="37" y="534" width="111" height="159" rx="8"/><rect x="549" y="534" width="111" height="159" rx="8"/>
+<path d="M50 650H72L78 622L86 672L93 638L98 650H134" opacity=".25"/>
+<path class="ecg" pathLength="100" stroke-dasharray="28 72" d="M50 650H72L78 622L86 672L93 638L98 650H134" stroke-width="3.5"/>
+<g stroke="none" fill="#ff3b30"><rect class="bar" style="--d:2.2s;--l:0s" x="567" y="660" width="14" height="19"/><rect class="bar" style="--d:2.8s;--l:-.6s" x="587" y="622" width="14" height="57"/><rect class="bar" style="--d:3.1s;--l:-1.2s" x="607" y="583" width="14" height="96"/><rect class="bar" style="--d:2.5s;--l:-1.8s" x="628" y="634" width="14" height="45"/></g>
+</g>
+</g>
+<g class="s" text-anchor="middle">
+<g class="e" style="--i:1"><text class="t title" x="349" y="172" font-size="76" fill="#ff3b30" filter="url(#gl)">FORGE</text>
+<text x="349" y="219" font-size="20" letter-spacing="4.5" fill="#b9645e">SUJET 001 · EN ATTENTE</text></g>
+<g class="e" style="--i:4"><text x="48" y="566" font-size="17" fill="#ffb0aa" text-anchor="start">FC 72</text><text x="563" y="566" font-size="17" fill="#ffb0aa" text-anchor="start">FORCE</text></g>
+<g class="e" style="--i:5"><text x="349" y="1163" font-size="25" fill="#f3cfcb">Ton corps est prêt.</text>
+<g class="btn" data-go role="button" tabindex="0"><rect class="pl" x="50" y="1270" width="598" height="93" rx="8" fill="#ff3b30" filter="url(#gl)" opacity=".4"/>
+<rect x="50" y="1270" width="598" height="93" rx="8" fill="#1c0808" stroke="#ff3b30" stroke-width="3"/>
+<text class="t" x="349" y="1327" font-size="30" letter-spacing="5" fill="#ff3b30">REJOINDRE LE GYM</text></g>
+<g class="btn" data-go role="button" tabindex="0"><rect x="110" y="1384" width="478" height="50" fill="transparent"/><text x="349" y="1416" font-size="23" fill="#d9aaa6">J’ai déjà un compte</text></g></g>
+</g>
+</svg>
+</main>
+<div class="scan"></div><div class="lines"></div>
+<script>
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>navigator.vibrate&&navigator.vibrate(15)));
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
+</script>
+</body>
+</html>
