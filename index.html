@@ -108,8 +108,12 @@ svg{display:block;width:100%;height:100%;overflow:visible}
 </main>
 <div class="scan"></div><div class="lines"></div>
 <script>
-document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{if(b.getAttribute('data-go')==='login'){window.location.href='login.html';}navigator.vibrate&&navigator.vibrate(15);}));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{
+  window.location.href = b.getAttribute('data-go') === 'login' ? 'login.html' : 'inscription.html';
+  navigator.vibrate&&navigator.vibrate(15);
+}));
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
+// Un utilisateur déjà connecté arrive directement à l'accueil temporaire.
 </script>
 </body>
 </html>
