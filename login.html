@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>FORGE - Connexion</title>
+<meta name="theme-color" content="#080303">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FORGE">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;scrollbar-width:none}
+::-webkit-scrollbar{display:none}
+html,body{margin:0;height:100%;background:#080303;overflow:hidden;overscroll-behavior:none;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+main{position:fixed;inset:0;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);background:radial-gradient(ellipse at 50% 45%,#1c0707,#080303 70%);display:flex;flex-direction:column;justify-content:center;align-items:center}
+.container{position:relative;width:100%;max-width:600px;padding:40px 30px;text-align:center}
+svg{display:block;width:100%;height:100%;overflow:visible}
+.t{font-family:'Archivo Black','Arial Black',Impact,sans-serif}
+.s{font-family:'Space Grotesk',system-ui,sans-serif}
+.lines,.scan{position:fixed;left:0;right:0;pointer-events:none}
+.lines{inset:0;z-index:5;background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 1px,transparent 1px 3px);opacity:.45}
+.scan{top:0;height:22vh;z-index:4;background:linear-gradient(transparent,rgba(255,59,48,.16),transparent);filter:blur(6px);animation:scan 6s linear infinite}
+.e{animation:up .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i)*.12s)}
+.flow{animation:flow 1.6s linear infinite}
+.wave{animation:wave 2.6s linear infinite}
+.b{fill:none;stroke:#e8918a;stroke-width:2.5;animation:rise var(--d) linear infinite var(--l)}
+.bob{animation:bob 3.6s ease-in-out infinite alternate}
+.bar{transform-box:fill-box;transform-origin:50% 100%;animation:bar var(--d) ease-in-out infinite var(--l)}
+.ecg{animation:ecg 1.8s linear infinite}
+.pl{animation:pulse 2.4s ease-in-out infinite}
+.title{animation:flick 5s infinite}
+.btn{cursor:pointer;transform-box:fill-box;transform-origin:center;transition:transform .12s}
+.btn:active{transform:scale(.97)}
+.form-group{margin:20px 0;text-align:left}
+.form-group label{display:block;font-family:'Space Grotesk',system-ui,sans-serif;font-size:16px;color:#ffb0aa;margin-bottom:8px;letter-spacing:2px}
+.form-group input{width:100%;padding:12px 16px;background:#1c0808;border:2px solid #ff3b30;border-radius:8px;color:#f3cfcb;font-family:'Space Grotesk',system-ui,sans-serif;font-size:16px;box-sizing:border-box;transition:all .3s}
+.form-group input:focus{outline:none;border-color:#ffb0aa;box-shadow:0 0 15px rgba(255,59,48,.3)}
+.form-group input::placeholder{color:#8b5855}
+.submit-btn{width:100%;padding:16px;margin:30px 0 20px;background:#1c0808;border:2px solid #ff3b30;border-radius:8px;color:#ff3b30;font-family:'Archivo Black','Arial Black',Impact,sans-serif;font-size:18px;letter-spacing:3px;cursor:pointer;transition:all .3s;box-shadow:0 0 20px rgba(255,59,48,.2)}
+.submit-btn:hover{box-shadow:0 0 30px rgba(255,59,48,.4);background:rgba(255,59,48,.1)}
+.submit-btn:active{transform:scale(.98)}
+.form-info{font-family:'Space Grotesk',system-ui,sans-serif;font-size:14px;color:#d9aaa6;margin-top:20px;text-align:center}
+.form-info a{color:#ff3b30;text-decoration:none;border-bottom:1px solid #ff3b30;transition:color .3s}
+.form-info a:hover{color:#ffb0aa}
+.back-btn{position:absolute;top:20px;left:20px;font-family:'Space Grotesk',system-ui,sans-serif;font-size:14px;color:#d9aaa6;background:transparent;border:1px solid #ff3b30;padding:8px 16px;border-radius:6px;cursor:pointer;transition:all .3s}
+.back-btn:hover{color:#ff3b30;box-shadow:0 0 10px rgba(255,59,48,.3)}
+h1{font-size:48px;color:#ff3b30;margin:0 0 10px;filter:drop-shadow(0 0 10px rgba(255,59,48,.5))}
+.subtitle{font-size:16px;color:#b9645e;letter-spacing:3px;margin:0;margin-bottom:40px}
+@keyframes scan{from{transform:translateY(-25vh)}to{transform:translateY(115vh)}}
+@keyframes flow{to{stroke-dashoffset:-52}}
+@keyframes wave{to{transform:translateX(-80px)}}
+@keyframes rise{0%{transform:translateY(0);opacity:0}12%{opacity:.9}100%{transform:translateY(-520px);opacity:0}}
+@keyframes bob{from{transform:translateY(-8px)}to{transform:translateY(10px)}}
+@keyframes bar{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+@keyframes ecg{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}
+@keyframes flick{0%,90%,100%{opacity:1}92%{opacity:.7}94%{opacity:1}97%{opacity:.82}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important}}
+</style>
+</head>
+<body>
+<main>
+<button class="back-btn" onclick="window.location.href='index.html'">← Retour</button>
+<div class="container">
+<h1 class="t title">FORGE</h1>
+<p class="subtitle s">CONNEXION</p>
+<form onsubmit="handleLogin(event)">
+<div class="form-group">
+<label for="email">Email</label>
+<input type="email" id="email" name="email" placeholder="entrez votre email" required>
+</div>
+<div class="form-group">
+<label for="password">Mot de passe</label>
+<input type="password" id="password" name="password" placeholder="entrez votre mot de passe" required>
+</div>
+<button type="submit" class="submit-btn s">SE CONNECTER</button>
+</form>
+<p class="form-info s">Pas encore de compte ? <a href="index.html">Créer un compte</a></p>
+</div>
+</main>
+<div class="scan"></div><div class="lines"></div>
+<script>
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
+function handleLogin(event){
+  event.preventDefault();
+  const email=document.getElementById('email').value;
+  const password=document.getElementById('password').value;
+  if(email&&password){
+	navigator.vibrate&&navigator.vibrate([30,20,30]);
+	console.log('Connexion avec:',email);
+	// Ici vous pouvez ajouter votre logique de connexion (API call, etc)
+	// Pour la démo, on affiche un message de succès
+	alert('Bienvenue, '+email+'!');
+  }
+}
+document.querySelectorAll('input').forEach(input=>{
+  input.addEventListener('focus',()=>navigator.vibrate&&navigator.vibrate(10));
+});
+</script>
+</body>
+</html>
