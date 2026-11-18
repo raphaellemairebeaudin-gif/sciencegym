@@ -1,4 +1,4 @@
-const V='forge-v8',SHELL=['./','index.html','login.html','inscription.html','accueil.html','seance.html','ajouter.html','exercices.js','profil.html','base.css','app.css','forge.js','supabase.js','manifest.webmanifest','forge-192.png','forge-512.png','forge-180.png'];
+const V='forge-v9',SHELL=['./','index.html','login.html','inscription.html','accueil.html','seance.html','ajouter.html','historique.html','modifier-profil.html','exercices.js','profil.html','base.css','app.css','forge.js','supabase.js','manifest.webmanifest','forge-192.png','forge-512.png','forge-180.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>Promise.all(SHELL.map(u=>c.add(new Request(u,{cache:'reload'})).catch(()=>{})))));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{

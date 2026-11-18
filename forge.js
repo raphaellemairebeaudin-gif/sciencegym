@@ -30,4 +30,10 @@ document.addEventListener('click',e=>{
   if(a){const h=a.getAttribute('href');if(h&&h[0]!=='#'&&a.target!=='_blank'){e.preventDefault();F.go(h)}}
 });
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
+// Aucun rebond / sortie de page : on ne laisse défiler que les zones réellement défilantes
+let y0=0;document.addEventListener('touchstart',e=>{y0=e.touches[0].clientY},{passive:true});
+document.addEventListener('touchmove',e=>{if(e.target.closest&&e.target.closest('.fr'))return;const d=e.touches[0].clientY-y0;
+ for(let el=e.target;el&&el!==document.documentElement;el=el.parentElement){const o=getComputedStyle(el).overflowY;
+  if((o==='auto'||o==='scroll')&&el.scrollHeight>el.clientHeight+1){const top=el.scrollTop<=0,bot=el.scrollTop+el.clientHeight>=el.scrollHeight-1;if(((top&&d>0)||(bot&&d<0))&&e.cancelable)e.preventDefault();return}}
+ if(e.cancelable)e.preventDefault()},{passive:false});
 })();

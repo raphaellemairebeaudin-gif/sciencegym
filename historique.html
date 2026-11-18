@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0d0607"><meta name="color-scheme" content="dark">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="FORGE">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="forge-180.png"><link rel="icon" href="forge-192.png"><title>FORGE — Historique</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=9"><link rel="stylesheet" href="app.css?v=9">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script></head>
+<body><div class="app"><svg class="cab" viewBox="0 0 390 844" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke-linecap="round"><path d="M386 0C386 90 378 110 381 190S388 320 382 430" stroke="#3a0c0a" stroke-width="7"/><path class="cur" d="M386 0C386 90 378 110 381 190S388 320 382 430" stroke="#ff4a3d" stroke-width="2"/><path d="M4 300C4 380 12 400 8 500S3 640 7 760" stroke="#3a0c0a" stroke-width="7"/><path class="cur" d="M4 300C4 380 12 400 8 500S3 640 7 760" stroke="#ff4a3d" stroke-width="2"/></g></svg><div class="sl"></div><div class="r"><div class="r" style="gap:12px"><a class="c pf" href="accueil.html" aria-label="Retour"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M14 4l-7 7 7 7" fill="none" stroke="#ff4a3d" stroke-width="2.4"/></svg></a><div class="hud" style="line-height:1.7"><span class="rd">Sujet 001</span><br>Historique</div></div><svg width="64" height="22" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,15 20,15 26,4 33,26 40,15 60,15 66,8 72,22 78,15 100,15" fill="none" stroke="#ff4a3d" stroke-opacity=".3" stroke-width="1.5" vector-effect="non-scaling-stroke"/><polyline class="hb" pathLength="100" points="0,15 20,15 26,4 33,26 40,15 60,15 66,8 72,22 78,15 100,15" fill="none" stroke="#ff4a3d" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
+<div><div class="t" style="font-size:30px">Historique</div><div class="m" id="cnt" style="margin-top:8px">…</div></div>
+<div class="pg" id="ls"></div><nav class="nav"><a class="" href="accueil.html">Accueil</a><a class=" soon" href="#" data-soon>Notes</a><a class=" soon" href="#" data-soon>Budget</a><a class=" soon" href="#" data-soon>Fioles</a></nav></div><script src="forge.js?v=9"></script>
+<script>
+const $=i=>document.getElementById(i),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let rows=[];
+const dt=s=>{const d=new Date(s);return d.toLocaleDateString('fr-CA',{weekday:'short',day:'numeric',month:'short',year:'numeric'})+' · '+d.toLocaleTimeString('fr-CA',{hour:'2-digit',minute:'2-digit'})};
+function card(s){const a=new Date(s.started_at),b=new Date(s.ended_at||s.started_at),min=Math.round((b-a)/6e4);
+ return `<div class="c hs" data-id="${s.id}"><div class="r" style="align-items:flex-start;gap:12px"><div style="min-width:0"><div class="hn">${esc(s.nom||'Séance')}</div><div class="m" style="margin-top:8px">${dt(s.ended_at||s.started_at)}</div></div><div class="hud" style="white-space:nowrap">${min>0&&min<1000?min+' min':''}</div></div>${s.muscles?`<div class="m" style="margin-top:12px">${esc(s.muscles)}</div>`:''}<div class="det"></div><div class="ha"><button type="button" class="b sm ghost vw">Détails</button><button type="button" class="b sm ghost rm">Supprimer</button></div></div>`}
+function draw(){$('cnt').textContent=rows.length+' séance'+(rows.length>1?'s':'')+' enregistrée'+(rows.length>1?'s':'');$('ls').innerHTML=rows.length?rows.map(card).join(''):'<div class="vide">Aucune séance enregistrée pour l’instant.</div>'}
+async function detail(c){const det=c.querySelector('.det');if(c.dataset.l)return;c.dataset.l=1;det.textContent='Chargement…';
+ const r=await Forge.db().from('seance_series').select('exercice,ordre,serie,poids_kg,reps').eq('seance_id',c.dataset.id).order('ordre').order('serie');
+ if(r.error||!r.data?.length){det.innerHTML='<div class="m">Aucun détail disponible.</div>';return}
+ const g={};r.data.forEach(x=>{(g[x.ordre+'|'+x.exercice]=g[x.ordre+'|'+x.exercice]||[]).push(Forge.fmt(Forge.kg2u(x.poids_kg))+' '+Forge.W()+' × '+x.reps)});
+ det.innerHTML=Object.keys(g).map(k=>`<div class="dn">${esc(k.split('|').slice(1).join('|'))}</div><div class="m" style="margin-top:6px;line-height:1.7">${g[k].map(esc).join('<br>')}</div>`).join('')}
+$('ls').addEventListener('click',async e=>{const c=e.target.closest('.hs');if(!c)return;
+ if(e.target.closest('.vw')){c.classList.toggle('on');e.target.closest('.vw').textContent=c.classList.contains('on')?'Masquer':'Détails';if(c.classList.contains('on'))detail(c);return}
+ const b=e.target.closest('.rm');if(!b)return;
+ if(!b.classList.contains('cf')){b.classList.add('cf');b.textContent='Confirmer';clearTimeout(b._t);b._t=setTimeout(()=>{b.classList.remove('cf');b.textContent='Supprimer'},3000);return}
+ b.disabled=true;const id=c.dataset.id,db=Forge.db();
+ try{let r=await db.from('seances').delete().eq('id',id).select('id');
+  if(r.error){const s=await db.from('seance_series').delete().eq('seance_id',id);if(s.error)throw s.error;r=await db.from('seances').delete().eq('id',id).select('id')}
+  if(r.error)throw r.error;if(!r.data?.length)throw new Error('Suppression refusée par la base (droits)');
+  rows=rows.filter(x=>String(x.id)!==String(id));draw();Forge.toast('Séance supprimée')}
+ catch(err){Forge.toast(err.message||'Suppression impossible');b.disabled=false;b.classList.remove('cf');b.textContent='Supprimer'}});
+(async()=>{const u=await Forge.user();if(!u)return;const db=Forge.db();
+ let r=await db.from('seances').select('id,nom,started_at,ended_at,muscles,nb_exercices').order('ended_at',{ascending:false}).limit(200);
+ if(r.error)r=await db.from('seances').select('id,nom,started_at,ended_at').order('ended_at',{ascending:false}).limit(200);
+ if(r.error){$('cnt').textContent='';$('ls').innerHTML='<div class="vide">Chargement impossible.</div>';return}
+ rows=r.data||[];draw()})();
+</script></body></html>
