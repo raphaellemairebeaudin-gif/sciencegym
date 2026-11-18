@@ -4,7 +4,7 @@
 <meta name="theme-color" content="#0d0607"><meta name="color-scheme" content="dark">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="FORGE">
-<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><link rel="icon" href="icons/icon-192.png"><title>FORGE — Ajouter un exercice</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/forge-180.png"><link rel="icon" href="icons/forge-192.png"><title>FORGE — Ajouter un exercice</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="base.css?v=6"><link rel="stylesheet" href="app.css?v=6">
 <style>
@@ -18,7 +18,8 @@
 .et{flex:1;min-width:0}.et b{display:block;font-size:15px;font-weight:600}.et .m{font-size:12px}
 .ex.pk{border-color:#ff4a3d;box-shadow:0 0 10px #a3180f77}.ex.pk .cb{background:#ff4a3d;color:#0d0607}
 .ed{display:none;padding:4px 14px 14px;border-top:1px solid #3a1210;font-size:14px;color:#ffd9d5}.ex.op .ed{display:block}
-.ed img{display:block;width:100%;max-height:220px;object-fit:contain;background:#0d0607;border:1px solid #3a1210;border-radius:6px;margin:10px 0}
+.th{width:64px;height:64px;flex:none;border-radius:6px;overflow:hidden;background:#1a0809;border:1px solid #3a1210}.th img{width:100%;height:100%;object-fit:cover;display:block}
+.ed img{display:block;width:100%;max-height:240px;object-fit:contain;background:#fff;border:1px solid #3a1210;border-radius:6px;margin:10px 0}
 .ed ol{margin:8px 0 0;padding-left:20px;line-height:1.5}.ed .hud{margin-top:10px}
 .vide{text-align:center;color:#c98f89;padding:30px 0}
 </style></head>
@@ -33,24 +34,36 @@
 <script>
 const $=i=>document.getElementById(i),KEY='forge_seance_v2',MAXE=15;
 const nz=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const DB=EXOS_RAW.map(([n,p,s,l,st,im])=>({n,p,s:s?s.split(','):[],l,st:st.split('|'),im,z:nz(n+' '+p+' '+s)}));
-const MUS=[...new Set(DB.map(e=>e.p))],pk=new Set(),op=new Set(),mf=new Set();let lf='',IMG='https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/';
+const DB=EXOS_RAW.map(([n,p,s,l,st,h])=>({n,p,s:s?s.split(','):[],l,st:st.split('|'),h,z:nz(n+' '+p+' '+s)}));
+const MUS=[...new Set(DB.map(e=>e.p))],pk=new Set(),op=new Set(),mf=new Set();let lf='';
+const BASE='https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/',U={},PR={},cp=s=>String(s).toLowerCase().replace(/[^a-z0-9]/g,'');
+function find(F,h){for(const q of h.split('|')){const w=q.trim().split(/\s+/).map(cp);let b=null;for(const r of F){const c=cp(r.name);if(r.images&&r.images.length&&w.every(x=>c.includes(x))&&(!b||c.length<b.c.length))b={r,c}}if(b)return b.r}return null}
+const ready=fetch(BASE+'dist/exercises.json').then(r=>r.json()).then(F=>DB.forEach(e=>e.r=find(F,e.h))).catch(()=>{});
+const ld=u=>new Promise((ok,ko)=>{const m=new Image();m.crossOrigin='anonymous';m.onload=()=>ok(m);m.onerror=ko;m.src=u});
+// Détecte et retire les cadres (noirs, blancs ou unis) autour de la photo
+function box(m){const w=m.naturalWidth,h=m.naturalHeight,c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(m,0,0);const d=x.getImageData(0,0,w,h).data;let L=0,T=0,R=w-1,B=h-1;
+ for(let n=0;n<2;n++){const o=(T*w+L)*4,r0=d[o],g0=d[o+1],b0=d[o+2];
+  const bg=(i,j)=>{const k=(j*w+i)*4;return Math.abs(d[k]-r0)<30&&Math.abs(d[k+1]-g0)<30&&Math.abs(d[k+2]-b0)<30};
+  const row=j=>{for(let i=L;i<=R;i+=2)if(!bg(i,j))return false;return true},col=i=>{for(let j=T;j<=B;j+=2)if(!bg(i,j))return false;return true};
+  while(T<B&&row(T))T++;while(B>T&&row(B))B--;while(L<R&&col(L))L++;while(R>L&&col(R))R--}
+ const p=Math.round(Math.min(R-L,B-T)*.04);L=Math.max(0,L-p);T=Math.max(0,T-p);R=Math.min(w-1,R+p);B=Math.min(h-1,B+p);return[L,T,R-L+1,B-T+1]}
+const cut=(m,b)=>{const c=document.createElement('canvas');c.width=b[2];c.height=b[3];c.getContext('2d').drawImage(m,b[0],b[1],b[2],b[3],0,0,b[2],b[3]);return new Promise(ok=>c.toBlob(x=>ok(URL.createObjectURL(x)),'image/jpeg',.9))};
+const fr=i=>PR[i]||(PR[i]=ready.then(async()=>{const r=DB[i].r;if(!r)return null;try{const [a,b]=await Promise.all(r.images.slice(0,2).map(p=>ld(BASE+'exercises/'+p))),bx=box(a);U[i]={a:await cut(a,bx)};U[i].b=b?await cut(b,bx):U[i].a;return U[i]}catch(e){return null}}));
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;io.unobserve(en.target);const t=en.target,i=+t.dataset.i;fr(i).then(u=>{if(!u)return;if(t.isConnected&&!t.firstChild)t.innerHTML=`<img src="${u.a}" alt="">`;if(op.has(i))draw()})}),{root:$('ls')});
 function chips(){
  $('mu').innerHTML=MUS.map(m=>`<button type="button" class="fc${mf.has(m)?' on':''}" data-m="${m}">${m}</button>`).join('');
  $('lu').innerHTML=[['','Tous'],['S','Salle'],['M','Maison']].map(([v,t])=>`<button type="button" class="fc${lf===v?' on':''}" data-l="${v}">${t}</button>`).join('')}
 function draw(){
  const q=nz($('q').value.trim()),sc=$('ls').scrollTop;
  const r=DB.filter(e=>(!mf.size||mf.has(e.p))&&(!lf||e.l.includes(lf))&&(!q||q.split(/\s+/).every(w=>e.z.includes(w))));
- $('ls').innerHTML=r.length?r.map(e=>{const i=DB.indexOf(e);return`<div class="c ex${pk.has(i)?' pk':''}${op.has(i)?' op':''}" data-i="${i}"><div class="eh"><div class="et"><b>${esc(e.n)}</b><div class="m">${e.p}${e.s.length?' · '+e.s.join(', '):''}</div></div><button type="button" class="cb sel" aria-label="Sélectionner">✓</button></div><div class="ed">${op.has(i)&&e.im?`<img data-b="${e.im}" src="${IMG+e.im}/0.jpg" alt="">`:''}<div class="hud">Muscle principal</div>${e.p}${e.s.length?'<div class="hud">Muscles secondaires</div>'+e.s.join(', '):''}<div class="hud">Exécution</div><ol>${e.st.map(s=>'<li>'+esc(s)+'</li>').join('')}</ol></div></div>`}).join(''):'<div class="vide">Aucun exercice trouvé</div>';
- $('ls').scrollTop=sc;const n=pk.size;$('ok').disabled=!n;$('ok').textContent=n?'Ajouter ('+n+')':'Ajouter'}
+ $('ls').innerHTML=r.length?r.map(e=>{const i=DB.indexOf(e);return`<div class="c ex${pk.has(i)?' pk':''}${op.has(i)?' op':''}" data-i="${i}"><div class="eh"><div class="th" data-i="${i}">${U[i]?`<img src="${U[i].a}" alt="">`:''}</div><div class="et"><b>${esc(e.n)}</b><div class="m">${e.p}${e.s.length?' · '+e.s.join(', '):''}</div></div><button type="button" class="cb sel" aria-label="Sélectionner">✓</button></div><div class="ed">${op.has(i)&&U[i]?`<img class="big" data-a="${U[i].a}" data-b="${U[i].b}" src="${U[i].a}" alt="">`:''}<div class="hud">Muscle principal</div>${e.p}${e.s.length?'<div class="hud">Muscles secondaires</div>'+e.s.join(', '):''}<div class="hud">Exécution</div><ol>${e.st.map(s=>'<li>'+esc(s)+'</li>').join('')}</ol></div></div>`}).join(''):'<div class="vide">Aucun exercice trouvé</div>';
+ $('ls').scrollTop=sc;$('ls').querySelectorAll('.th:empty').forEach(t=>io.observe(t));const n=pk.size;$('ok').disabled=!n;$('ok').textContent=n?'Ajouter ('+n+')':'Ajouter'}
 $('q').oninput=draw;
 $('mu').onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;const m=b.dataset.m;mf.has(m)?mf.delete(m):mf.add(m);chips();draw()};
 $('lu').onclick=e=>{const b=e.target.closest('[data-l]');if(!b)return;lf=b.dataset.l;chips();draw()};
 $('ls').onclick=e=>{const c=e.target.closest('.ex');if(!c)return;const i=+c.dataset.i;
  if(e.target.closest('.sel')){if(pk.has(i))pk.delete(i);else{pk.add(i)}}else{op.has(i)?op.delete(i):op.add(i)}draw()};
-// images : alternance départ / arrivée du mouvement ; masquées si indisponibles
-$('ls').addEventListener('error',e=>{if(e.target.tagName==='IMG')e.target.remove()},true);
-let fl=0;setInterval(()=>{fl^=1;document.querySelectorAll('#ls img[data-b]').forEach(im=>im.src=IMG+im.dataset.b+'/'+fl+'.jpg')},900);
+let fl=0;setInterval(()=>{fl^=1;document.querySelectorAll('#ls img.big').forEach(im=>im.src=fl?im.dataset.b:im.dataset.a)},900);
 $('bk').onclick=()=>Forge.go('seance.html');
 $('ok').onclick=()=>{
  let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
