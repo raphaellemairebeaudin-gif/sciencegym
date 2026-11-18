@@ -1,8 +1,13 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080303"><title>FORGE — Créer un compte</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#080303"><meta name="color-scheme" content="dark">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="FORGE">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="base.css"><title>FORGE — Créer un compte</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -28,12 +33,17 @@ a{color:#ff6259;text-decoration:none;border-bottom:1px solid #ff6259}
 .message.show{display:block}
 .scan{position:fixed;inset:0;pointer-events:none;opacity:.18;background:repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 1px,transparent 1px 3px)}
 @media(max-width:420px){.container{padding:26px 20px}.back-btn{top:12px;left:12px}}
+html,body{height:100%;overflow:hidden}body{min-height:0;position:relative}
+main{position:absolute;inset:0;min-height:0;padding:calc(var(--st) + 58px) 18px calc(var(--sb) + 12px)}
+.back-btn{position:absolute;top:calc(var(--st) + 12px);left:14px}.scan{position:absolute}
+.container{padding:clamp(16px,3dvh,30px) clamp(16px,5vw,26px)}.subtitle{margin-bottom:clamp(10px,2.5dvh,30px)}
+.form-group{margin:clamp(8px,1.6dvh,18px) 0}input{padding:clamp(10px,1.7dvh,14px) 15px}.submit-btn{margin-top:clamp(10px,2dvh,18px)}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
 </head>
 <body>
-<button class="back-btn" type="button" onclick="location.href='index.html'">← Retour</button>
+<button class="back-btn" type="button" onclick="Forge.go('index.html')">← Retour</button>
 <main><section class="container">
 <h1 class="t">FORGE</h1><p class="subtitle">REJOINDRE LE GYM</p>
 
@@ -81,4 +91,5 @@ form.addEventListener('submit',async(e)=>{
   finally{btn.disabled=false;btn.textContent='CRÉER MON COMPTE';}
 });
 </script>
+<script src="forge.js"></script>
 </body></html>
