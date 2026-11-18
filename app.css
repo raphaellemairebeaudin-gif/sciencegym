@@ -67,3 +67,10 @@ button{font-family:inherit}
 .sw{width:84px;height:56px;padding:0;border:2px solid #ff4a3d;border-radius:8px;background:linear-gradient(135deg,#ff4a3d 50%,#3a0c0a 50%);box-shadow:0 0 16px #ff4a3d}
 .av{width:64px;height:64px;flex:none;display:flex;align-items:center;justify-content:center;border:2px solid #ff4a3d;border-radius:32px;background:#2a0b09;box-shadow:0 0 18px #ff4a3d}
 .pfa{background:#ff4a3d}.pfa i{background:#0d0607;box-shadow:none}.k{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#ff9a92}
+
+/* Verrou global : aucune sortie / rebond de la page */
+html,body{overflow:hidden;overscroll-behavior:none}body{position:fixed;inset:0;width:100%}
+/* Page entière scrollable (séance) */
+.app.sa{overflow-x:hidden;overflow-y:auto;overscroll-behavior:none;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+.app.sa>.xl{flex:none;overflow:visible}
+.sa .cab,.sa .sl,.sa .nav{position:fixed}

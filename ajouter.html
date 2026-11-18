@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0d0607"><meta name="color-scheme" content="dark">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="FORGE">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><link rel="icon" href="icons/icon-192.png"><title>FORGE — Ajouter un exercice</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=6"><link rel="stylesheet" href="app.css?v=6">
+<style>
+.app.aj{padding-bottom:calc(12px + var(--sb))}
+.sr{width:100%;height:44px;padding:0 14px;background:#1a0809;border:1px solid #ff4a3d88;border-radius:6px;color:#ffd9d5;font:500 16px 'Space Grotesk',sans-serif;outline:0}
+.sr:focus{border-color:#ff4a3d;box-shadow:0 0 8px #ff4a3d88}
+.fr{display:flex;gap:6px;overflow-x:auto;touch-action:pan-x;overscroll-behavior:contain;padding-bottom:2px}
+.fc{flex:none;height:32px;padding:0 12px;border:1px solid #ff4a3d55;border-radius:16px;background:#170a0b;color:#c98f89;font:600 12px 'Space Grotesk',sans-serif;white-space:nowrap}
+.fc.on{background:#ff4a3d;color:#0d0607;box-shadow:0 0 8px #ff4a3d}
+.ex{padding:0}.eh{display:flex;align-items:center;gap:10px;padding:10px 12px}
+.et{flex:1;min-width:0}.et b{display:block;font-size:15px;font-weight:600}.et .m{font-size:12px}
+.ex.pk{border-color:#ff4a3d;box-shadow:0 0 10px #a3180f77}.ex.pk .cb{background:#ff4a3d;color:#0d0607}
+.ed{display:none;padding:4px 14px 14px;border-top:1px solid #3a1210;font-size:14px;color:#ffd9d5}.ex.op .ed{display:block}
+.ed img{display:block;width:100%;max-height:220px;object-fit:contain;background:#0d0607;border:1px solid #3a1210;border-radius:6px;margin:10px 0}
+.ed ol{margin:8px 0 0;padding-left:20px;line-height:1.5}.ed .hud{margin-top:10px}
+.vide{text-align:center;color:#c98f89;padding:30px 0}
+</style></head>
+<body><div class="app aj"><div class="sl"></div>
+<div class="r" style="justify-content:flex-start;gap:12px"><button class="ar" id="bk" type="button" aria-label="Retour">‹</button><div class="t" style="font-size:26px">Ajouter</div></div>
+<input class="sr" id="q" type="search" placeholder="Rechercher un exercice" autocomplete="off" aria-label="Rechercher">
+<div class="fr" id="mu"></div>
+<div class="fr" id="lu"></div>
+<div class="grow xl" id="ls"></div>
+<button class="b" id="ok" type="button" disabled>Ajouter</button></div>
+<script src="forge.js?v=6"></script><script src="exercices.js"></script>
+<script>
+const $=i=>document.getElementById(i),KEY='forge_seance_v2',MAXE=15;
+const nz=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const DB=EXOS_RAW.map(([n,p,s,l,st,im])=>({n,p,s:s?s.split(','):[],l,st:st.split('|'),im,z:nz(n+' '+p+' '+s)}));
+const MUS=[...new Set(DB.map(e=>e.p))],pk=new Set(),op=new Set(),mf=new Set();let lf='',IMG='https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/';
+function chips(){
+ $('mu').innerHTML=MUS.map(m=>`<button type="button" class="fc${mf.has(m)?' on':''}" data-m="${m}">${m}</button>`).join('');
+ $('lu').innerHTML=[['','Tous'],['S','Salle'],['M','Maison']].map(([v,t])=>`<button type="button" class="fc${lf===v?' on':''}" data-l="${v}">${t}</button>`).join('')}
+function draw(){
+ const q=nz($('q').value.trim()),sc=$('ls').scrollTop;
+ const r=DB.filter(e=>(!mf.size||mf.has(e.p))&&(!lf||e.l.includes(lf))&&(!q||q.split(/\s+/).every(w=>e.z.includes(w))));
+ $('ls').innerHTML=r.length?r.map(e=>{const i=DB.indexOf(e);return`<div class="c ex${pk.has(i)?' pk':''}${op.has(i)?' op':''}" data-i="${i}"><div class="eh"><div class="et"><b>${esc(e.n)}</b><div class="m">${e.p}${e.s.length?' · '+e.s.join(', '):''}</div></div><button type="button" class="cb sel" aria-label="Sélectionner">✓</button></div><div class="ed">${op.has(i)&&e.im?`<img data-b="${e.im}" src="${IMG+e.im}/0.jpg" alt="">`:''}<div class="hud">Muscle principal</div>${e.p}${e.s.length?'<div class="hud">Muscles secondaires</div>'+e.s.join(', '):''}<div class="hud">Exécution</div><ol>${e.st.map(s=>'<li>'+esc(s)+'</li>').join('')}</ol></div></div>`}).join(''):'<div class="vide">Aucun exercice trouvé</div>';
+ $('ls').scrollTop=sc;const n=pk.size;$('ok').disabled=!n;$('ok').textContent=n?'Ajouter ('+n+')':'Ajouter'}
+$('q').oninput=draw;
+$('mu').onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;const m=b.dataset.m;mf.has(m)?mf.delete(m):mf.add(m);chips();draw()};
+$('lu').onclick=e=>{const b=e.target.closest('[data-l]');if(!b)return;lf=b.dataset.l;chips();draw()};
+$('ls').onclick=e=>{const c=e.target.closest('.ex');if(!c)return;const i=+c.dataset.i;
+ if(e.target.closest('.sel')){if(pk.has(i))pk.delete(i);else{pk.add(i)}}else{op.has(i)?op.delete(i):op.add(i)}draw()};
+// images : alternance départ / arrivée du mouvement ; masquées si indisponibles
+$('ls').addEventListener('error',e=>{if(e.target.tagName==='IMG')e.target.remove()},true);
+let fl=0;setInterval(()=>{fl^=1;document.querySelectorAll('#ls img[data-b]').forEach(im=>im.src=IMG+im.dataset.b+'/'+fl+'.jpg')},900);
+$('bk').onclick=()=>Forge.go('seance.html');
+$('ok').onclick=()=>{
+ let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+ if(!S||!S.ex||Date.now()-S.t0>432e5)S={nom:Forge.PLAN.nom,t0:Date.now(),ex:[]};
+ S.ex=S.ex.filter(x=>x.n.trim()||x.s.some(m=>m.ok||m.p||m.r));
+ const free=MAXE-S.ex.length,add=[...pk].slice(0,Math.max(0,free));
+ if(!add.length)return Forge.toast('15 exercices maximum');
+ add.forEach(i=>S.ex.push({n:DB[i].n,s:[{p:'',r:'',ok:false}]}));
+ try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}
+ if(add.length<pk.size)Forge.toast('15 exercices maximum');
+ Forge.go('seance.html')};
+chips();draw();
+</script></body></html>
