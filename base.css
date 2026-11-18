@@ -3,7 +3,10 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;scrollbar-width:none}
 ::-webkit-scrollbar{display:none;width:0;height:0}
 html,body{margin:0;height:100%;overflow:hidden;overscroll-behavior:none;background:#080303;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-body{position:relative}
+body{position:relative;background:#0d0607;padding-top:0}
+/* Harmonise la zone système supérieure avec le fond de l’application (iOS/PWA). */
+html{background:#0d0607;overscroll-behavior:none}body{min-height:100%;}
+
 input,textarea{-webkit-user-select:text;user-select:text}
 .hx{position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden}
 #toast{position:fixed;left:50%;bottom:calc(var(--sb) + 96px);transform:translate(-50%,20px);max-width:88%;padding:10px 16px;background:#2a0b09;border:2px solid #ff4a3d;border-radius:6px;color:#ffd9d5;font:600 12px 'Space Grotesk',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;text-align:center;box-shadow:0 0 20px #a3180f;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:50}
