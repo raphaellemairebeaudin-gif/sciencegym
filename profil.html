@@ -6,17 +6,39 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="FORGE">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><link rel="icon" href="icons/icon-192.png"><title>FORGE — Profil</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="base.css?v=5"><link rel="stylesheet" href="app.css?v=5">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script></head>
-<body><div class="app"><svg class="cab" viewBox="0 0 390 844" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke-linecap="round"><path d="M386 0C386 90 378 110 381 190S388 320 382 430" stroke="#3a0c0a" stroke-width="7"/><path class="cur" d="M386 0C386 90 378 110 381 190S388 320 382 430" stroke="#ff4a3d" stroke-width="2"/><path d="M4 300C4 380 12 400 8 500S3 640 7 760" stroke="#3a0c0a" stroke-width="7"/><path class="cur" d="M4 300C4 380 12 400 8 500S3 640 7 760" stroke="#ff4a3d" stroke-width="2"/></g></svg><div class="sl"></div><div class="r"><a class="c pf" href="accueil.html" aria-label="Retour"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M14 4L7 11l7 7" fill="none" stroke="#ff4a3d" stroke-width="2.4"/></svg></a><div class="hud rd">Profil · Sujet 001</div></div>
-<div class="c g" style="padding:18px"><div class="hud">Pseudo</div><div class="t" style="font-size:28px;margin:4px 0 14px" id="ps">…</div><div class="hud">Courriel</div><div id="em" style="margin-top:4px;overflow-wrap:anywhere">…</div></div>
-<button class="b" id="lo" type="button">Déconnexion</button><nav class="nav"><a class="on" href="accueil.html">Accueil</a><a class=" soon" href="#" data-soon>Notes</a><a class=" soon" href="#" data-soon>Budget</a><a class=" soon" href="#" data-soon>Fioles</a></nav></div>
-<script src="forge.js"></script>
+<body><div class="app"><svg class="cab" viewBox="0 0 390 844" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke-linecap="round"><path d="M386 0C386 90 378 110 381 190S388 320 382 430" stroke="#3a0c0a" stroke-width="7"/><path class="cur" d="M386 0C386 90 378 110 381 190S388 320 382 430" stroke="#ff4a3d" stroke-width="2"/><path d="M4 300C4 380 12 400 8 500S3 640 7 760" stroke="#3a0c0a" stroke-width="7"/><path class="cur" d="M4 300C4 380 12 400 8 500S3 640 7 760" stroke="#ff4a3d" stroke-width="2"/></g></svg><div class="sl"></div>
+<div class="r"><div class="r" style="gap:12px"><a class="c pf pfa" href="accueil.html" aria-label="Retour à l’accueil"><svg width="24" height="24" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="8" r="4" fill="none" stroke="#0d0607" stroke-width="2"/><path d="M3 20c0-5 4-7 8-7s8 2 8 7" fill="none" stroke="#0d0607" stroke-width="2"/></svg><i></i></a><div class="hud" style="line-height:1.7"><span class="rd">Sujet 001</span><br>Dossier personnel</div></div><svg width="64" height="22" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,15 20,15 26,4 33,26 40,15 60,15 66,8 72,22 78,15 100,15" fill="none" stroke="#ff4a3d" stroke-opacity=".3" stroke-width="1.5" vector-effect="non-scaling-stroke"/><polyline class="hb" pathLength="100" points="0,15 20,15 26,4 33,26 40,15 60,15 66,8 72,22 78,15 100,15" fill="none" stroke="#ff4a3d" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
+<div class="grow sc">
+<div class="t" style="font-size:30px">Profil</div>
+<div class="c g" style="padding:16px"><div style="display:flex;gap:14px;align-items:center;min-width:0"><div class="av"><svg width="36" height="36" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="8" r="4" fill="none" stroke="#ff4a3d" stroke-width="2"/><path d="M3 20c0-5 4-7 8-7s8 2 8 7" fill="none" stroke="#ff4a3d" stroke-width="2"/></svg></div><div style="min-width:0"><b id="ps" style="font-size:18px">…</b><div class="m" id="em" style="overflow-wrap:anywhere">…</div></div></div></div>
+<button class="b" id="mp" type="button" style="height:46px">Modifier le profil</button>
+<div class="row sq"><div class="c"><div class="hud">Poids</div><div class="t">— <span class="wu">kg</span></div></div><div class="c"><div class="hud">Taille</div><div class="t">— cm</div></div><div class="c"><div class="hud">Objectif</div><div class="t">— <span class="wu">kg</span></div></div></div>
+<div class="k">Thème de l’app</div>
+<div style="width:84px;text-align:center"><button class="sw" type="button" aria-label="Thème Rouge"></button><div class="hud rd" style="margin-top:6px">Rouge</div></div>
+<div class="c acc"><button class="ah" type="button"><span>Notifications</span><span class="ch">›</span></button><div class="ap"></div></div>
+<div class="c acc"><button class="ah" type="button"><span id="ul">Unités (kg, $)</span><span class="ch">›</span></button><div class="ap">
+<div class="ur"><span class="hud">Poids</span><div class="sg" data-k="w"><button type="button" data-v="kg">kg</button><button type="button" data-v="lb">lbs</button></div></div>
+<div class="ur"><span class="hud">Monnaie</span><div class="sg" data-k="c"><button type="button" data-v="$">$</button><button type="button" data-v="€">€</button></div></div></div></div>
+<button class="b" id="lo" type="button">Déconnexion</button>
+</div><nav class="nav"><a class="" href="accueil.html">Accueil</a><a class=" soon" href="#" data-soon>Notes</a><a class=" soon" href="#" data-soon>Budget</a><a class=" soon" href="#" data-soon>Fioles</a></nav></div>
+<script src="forge.js?v=5"></script>
 <script>
 const $=i=>document.getElementById(i);
-
-(async()=>{const u=await Forge.user();if(!u)return;
- const {data}=await Forge.db().from('profiles').select('pseudo').eq('id',u.id).maybeSingle();
- $('ps').textContent=data?.pseudo||u.user_metadata?.pseudo||'membre';$('em').textContent=u.email||'';})();
+function paint(){const u=Forge.U.get();$('ul').textContent='Unités ('+(u.w==='lb'?'lbs':'kg')+', '+u.c+')';
+ document.querySelectorAll('.sg').forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===u[g.dataset.k])));
+ document.querySelectorAll('.wu').forEach(e=>e.textContent=Forge.W())}
+document.querySelectorAll('.ah').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('on'));
+document.querySelectorAll('.sg button').forEach(b=>b.onclick=async()=>{
+ const u=Forge.U.get();u[b.parentElement.dataset.k]=b.dataset.v;Forge.U.set(u);paint();
+ const x=await Forge.user();if(x)Forge.db().from('profiles').update({unite_poids:u.w,unite_monnaie:u.c}).eq('id',x.id).then(()=>{},()=>{})});
+$('mp').onclick=()=>Forge.toast('Bientôt disponible');
 $('lo').onclick=async()=>{const {error}=await Forge.db().auth.signOut();if(error)return Forge.toast(error.message);Forge.go('index.html')};
+paint();
+(async()=>{const u=await Forge.user();if(!u)return;const db=Forge.db();
+ const p=await db.from('profiles').select('pseudo').eq('id',u.id).maybeSingle();
+ $('ps').textContent=p.data?.pseudo||u.user_metadata?.pseudo||'membre';$('em').textContent=u.email||'';
+ const q=await db.from('profiles').select('unite_poids,unite_monnaie').eq('id',u.id).maybeSingle();
+ if(q.data?.unite_poids){Forge.U.set({w:q.data.unite_poids,c:q.data.unite_monnaie||'$'});paint()}})();
 </script></body></html>

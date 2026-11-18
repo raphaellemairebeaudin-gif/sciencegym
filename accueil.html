@@ -6,38 +6,42 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="FORGE">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><link rel="icon" href="icons/icon-192.png"><title>FORGE — Accueil</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.css"><link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="base.css?v=5"><link rel="stylesheet" href="app.css?v=5">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script></head>
 <body><div class="app"><svg class="cab" viewBox="0 0 390 844" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke-linecap="round"><path d="M386 0C386 90 378 110 381 190S388 320 382 430" stroke="#3a0c0a" stroke-width="7"/><path class="cur" d="M386 0C386 90 378 110 381 190S388 320 382 430" stroke="#ff4a3d" stroke-width="2"/><path d="M4 300C4 380 12 400 8 500S3 640 7 760" stroke="#3a0c0a" stroke-width="7"/><path class="cur" d="M4 300C4 380 12 400 8 500S3 640 7 760" stroke="#ff4a3d" stroke-width="2"/></g></svg><div class="sl"></div><div class="r"><div class="r" style="gap:12px"><a class="c pf" href="profil.html" aria-label="Profil"><svg width="24" height="24" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="8" r="4" fill="none" stroke="#ff4a3d" stroke-width="2"/><path d="M3 20c0-5 4-7 8-7s8 2 8 7" fill="none" stroke="#ff4a3d" stroke-width="2"/></svg><i></i></a><div class="hud" style="line-height:1.7"><span class="rd">Sujet 001</span><br>Sync OK</div></div><svg width="64" height="22" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,15 20,15 26,4 33,26 40,15 60,15 66,8 72,22 78,15 100,15" fill="none" stroke="#ff4a3d" stroke-opacity=".3" stroke-width="1.5" vector-effect="non-scaling-stroke"/><polyline class="hb" pathLength="100" points="0,15 20,15 26,4 33,26 40,15 60,15 66,8 72,22 78,15 100,15" fill="none" stroke="#ff4a3d" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
 <div class="t hi" id="hi">Salut, …</div>
 <div class="c g r" style="padding:16px"><div style="min-width:0"><div class="hud" id="ps">Protocole · séance 000</div><div class="t" style="font-size:32px;margin:6px 0" id="pn">—</div><div class="m"><span id="pm"></span><br><span id="pe"></span></div></div><svg width="56" height="104" viewBox="0 0 56 104" aria-hidden="true" style="filter:drop-shadow(0 0 8px #ff4a3d);flex:none"><rect x="3" y="12" width="50" height="88" rx="8" fill="#1a0809" stroke="#ff4a3d" stroke-width="2"/><rect x="5" y="39" width="46" height="59" rx="5" fill="#ff4a3d" fill-opacity=".5"/><rect x="1" y="2" width="54" height="10" rx="3" fill="#1a0809" stroke="#ff4a3d" stroke-width="2"/><g fill="none" stroke="#ffb3ac" stroke-width="1.3"><circle class="bb" cx="18" cy="92" r="3"/><circle class="bb" cx="34" cy="94" r="2" style="animation-delay:1.2s"/><circle class="bb" cx="28" cy="90" r="4" style="animation-delay:2.2s"/></g></svg></div>
 <button class="b" id="go" type="button">Démarrer le protocole</button>
-<div class="row sq"><div class="c"><div class="hud">PR · Poids×Rép</div><div class="t" id="v1">—</div><small id="s1">&nbsp;</small></div><div class="c"><div class="hud">PR · Charge</div><div class="t" id="v2">—</div><small id="s2">&nbsp;</small></div><div class="c"><div class="hud">Cette semaine</div><div class="t" id="v3">—</div><small>séances</small></div></div>
+<div class="row sq"><div class="c"><div class="hud">PR · Poids×Rép</div><div class="t" id="v1">—</div></div><div class="c"><div class="hud">PR · Charge</div><div class="t" id="v2">—</div></div><div class="c"><div class="hud">Cette semaine</div><div class="t" id="v3">—</div><small>séances</small></div></div>
 <div class="row"><div class="c"><div class="hud">Fioles</div><div class="t" style="font-size:24px">—</div></div><div class="c"><div class="hud">Réserve du mois</div><div class="t" style="font-size:24px" id="rs">— $</div></div></div>
 <div class="c"><div class="hud" id="rh">Rapport en vedette</div><div id="rt" style="margin-top:4px">Aucun rapport en vedette pour l’instant.</div></div><nav class="nav"><a class="on" href="accueil.html">Accueil</a><a class=" soon" href="#" data-soon>Notes</a><a class=" soon" href="#" data-soon>Budget</a><a class=" soon" href="#" data-soon>Fioles</a></nav></div>
-<script src="forge.js"></script>
+<script src="forge.js?v=5"></script>
 <script>
 const $=i=>document.getElementById(i);
 
-const f=n=>String(Math.round(n*10)/10).replace('.',',');
 $('go').onclick=()=>Forge.go('seance.html');
 (async()=>{
- const u=await Forge.user();if(!u)return;const db=Forge.db(),P=Forge.PLAN;
- $('pn').textContent=P.nom;$('pm').textContent=P.muscles;$('pe').textContent=P.ex.length+' exercices';
+ const u=await Forge.user();if(!u)return;const db=Forge.db(),F=Forge;
  const mon=new Date();mon.setHours(0,0,0,0);mon.setDate(mon.getDate()-((mon.getDay()+6)%7));
- const [pr,ch,vo,tot,wk,rp]=await Promise.all([
+ const [pr,ch,vo,tot,wk,rp,ls]=await Promise.all([
   db.from('profiles').select('pseudo').eq('id',u.id).maybeSingle(),
-  db.from('seance_series').select('exercice,poids_kg,reps').order('poids_kg',{ascending:false}).order('reps',{ascending:false}).limit(1),
-  db.from('seance_series').select('exercice,poids_kg,reps').order('volume',{ascending:false}).limit(1),
+  db.from('seance_series').select('poids_kg').order('poids_kg',{ascending:false}).limit(1),
+  db.from('seance_series').select('poids_kg,reps').order('volume',{ascending:false}).limit(1),
   db.from('seances').select('id',{count:'exact',head:true}),
   db.from('seances').select('id',{count:'exact',head:true}).gte('ended_at',mon.toISOString()),
-  db.from('rapports').select('numero,texte').eq('vedette',true).limit(1)]);
+  db.from('rapports').select('numero,texte').eq('vedette',true).limit(1),
+  db.from('seances').select('nom,muscles,nb_exercices').order('ended_at',{ascending:false}).limit(1)]);
+ let l=ls.data?.[0];
+ if(ls.error){const r=await db.from('seances').select('nom').order('ended_at',{ascending:false}).limit(1);l=r.data?.[0]}
  $('hi').textContent='Salut, '+(pr.data?.pseudo||u.user_metadata?.pseudo||'membre');
  $('ps').textContent='Protocole · séance '+String(tot.count||0).padStart(3,'0');
+ $('pn').textContent=l?.nom||'Aucune séance';$('pm').textContent=l?.muscles||'—';
+ const n=l?.nb_exercices;$('pe').textContent=n==null?'—':n+' exercice'+(n>1?'s':'');
  $('v3').textContent=wk.count||0;
  const a=vo.data?.[0],b=ch.data?.[0];
- if(a){$('v1').textContent=f(a.poids_kg)+'×'+a.reps;$('s1').textContent=a.exercice}
- if(b){$('v2').textContent=f(b.poids_kg)+' kg';$('s2').textContent=f(b.poids_kg*2.20462)+' lb'}
+ if(a)$('v1').textContent=F.fmt(F.kg2u(a.poids_kg))+'×'+a.reps;
+ if(b)$('v2').textContent=F.fmt(F.kg2u(b.poids_kg))+' '+F.W();
+ $('rs').textContent='— '+F.U.get().c;
  const r=rp.data?.[0];if(r){$('rh').textContent='Rapport #'+String(r.numero).padStart(3,'0');$('rt').textContent=r.texte}
 })();
 </script></body></html>

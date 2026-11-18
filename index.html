@@ -48,7 +48,7 @@ svg{display:block;width:100%;height:100%;overflow:visible}
 @keyframes flick{0%,90%,100%{opacity:1}92%{opacity:.7}94%{opacity:1}97%{opacity:.82}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important}}
 </style>
-<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="base.css?v=5">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script>
 </head>
 <body>
@@ -108,7 +108,7 @@ svg{display:block;width:100%;height:100%;overflow:visible}
 </svg>
 </main>
 <div class="scan"></div><div class="lines"></div>
-<script src="forge.js"></script>
+<script src="forge.js?v=5"></script>
 <script>
 document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>Forge.go(b.dataset.go==='login'?'login.html':'inscription.html')));
 // Déjà connecté : on va directement à l'accueil
