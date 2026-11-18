@@ -1,4 +1,5 @@
-.app{position:absolute;inset:0;overflow:hidden;display:flex;flex-direction:column;gap:clamp(8px,1.5dvh,14px);padding:calc(var(--st) + 12px) 20px calc(78px + var(--sb));background:#0d0607;color:#ffd9d5;font-family:'Space Grotesk',system-ui,sans-serif}
+html,body{background:#0d0607}
+.app{position:fixed;inset:0;overflow:hidden;display:flex;flex-direction:column;gap:clamp(8px,1.5dvh,14px);padding:calc(var(--st) + 12px) 20px calc(78px + var(--sb));background:#0d0607;color:#ffd9d5;font-family:'Space Grotesk',system-ui,sans-serif}
 .app>*{flex:none}.app>.grow{flex:1 1 0;min-height:0}
 .cab,.sl{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .sl{background:repeating-linear-gradient(0deg,rgba(255,74,61,.05) 0 1px,transparent 1px 4px)}
@@ -42,3 +43,15 @@ button{font-family:inherit}
 .mr.ok .cb{background:#ff4a3d;color:#0d0607}
 @media(max-height:720px){.hrc{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+.nm{gap:8px}.sn{text-align:left!important;height:40px;padding:0;background:transparent;border:0;border-bottom:1px dashed #ff4a3d77;border-radius:0;outline:0;caret-color:#ff4a3d}
+.blk{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-color:#ff4a3d}
+.bh{display:flex;gap:8px;align-items:center;flex:none}
+.en{flex:1;min-width:0;height:34px;padding:0 2px;font-size:17px;background:transparent;border:0;border-bottom:1px solid #ff4a3d88;border-radius:0;outline:0;caret-color:#ff4a3d}
+.dx{width:34px;height:34px;flex:none;padding:0;border:1px solid #ff4a3d88;border-radius:4px;background:transparent;color:#ff6a5e;font-size:20px;line-height:1}
+.blk .ms{flex:1 1 0;min-height:0}.blk>.sm{flex:none}
+.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.cp{width:30px;height:28px;padding:0;border:1px solid #ff4a3d55;border-radius:4px;background:#170a0b;color:#c98f89;font:600 12px 'Space Grotesk',sans-serif}
+.cp.dn{border-color:#ff4a3d;color:#ffd9d5}.cp.on{background:#ff4a3d;color:#0d0607;box-shadow:0 0 8px #ff4a3d}
+.mr{min-height:28px;max-height:46px;padding:2px 10px}.in{height:100%}
+.in input,.cb{height:100%;min-height:22px;max-height:32px}
+.tm{font-size:34px!important}#ae,#vd{height:44px}

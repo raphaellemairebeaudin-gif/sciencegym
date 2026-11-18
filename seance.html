@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#080303"><meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0d0607"><meta name="color-scheme" content="dark">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="FORGE">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><link rel="icon" href="icons/icon-192.png"><title>FORGE — Séance</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -9,37 +9,44 @@
 <link rel="stylesheet" href="base.css"><link rel="stylesheet" href="app.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script></head>
 <body><div class="app"><svg class="cab" viewBox="0 0 390 844" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke-linecap="round"><path d="M386 0C386 90 378 110 381 190S388 320 382 430" stroke="#3a0c0a" stroke-width="7"/><path class="cur" d="M386 0C386 90 378 110 381 190S388 320 382 430" stroke="#ff4a3d" stroke-width="2"/><path d="M4 300C4 380 12 400 8 500S3 640 7 760" stroke="#3a0c0a" stroke-width="7"/><path class="cur" d="M4 300C4 380 12 400 8 500S3 640 7 760" stroke="#ff4a3d" stroke-width="2"/></g></svg><div class="sl"></div><div class="r"><div class="r" style="gap:12px"><a class="c pf" href="profil.html" aria-label="Profil"><svg width="24" height="24" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="8" r="4" fill="none" stroke="#ff4a3d" stroke-width="2"/><path d="M3 20c0-5 4-7 8-7s8 2 8 7" fill="none" stroke="#ff4a3d" stroke-width="2"/></svg><i></i></a><div class="hud" style="line-height:1.7"><span class="rd">Sujet 001</span><br><span id="an">Analyse en cours · 0/6</span></div></div><svg width="64" height="22" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,15 20,15 26,4 33,26 40,15 60,15 66,8 72,22 78,15 100,15" fill="none" stroke="#ff4a3d" stroke-opacity=".3" stroke-width="1.5" vector-effect="non-scaling-stroke"/><polyline class="hb" pathLength="100" points="0,15 20,15 26,4 33,26 40,15 60,15 66,8 72,22 78,15 100,15" fill="none" stroke="#ff4a3d" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
-<div class="r nm"><button class="ar" id="pv" type="button" aria-label="Exercice précédent">‹</button><div class="t" id="ex">—</div><button class="ar" id="nx" type="button" aria-label="Exercice suivant">›</button></div>
-<div class="c g hrc" style="padding:12px 16px"><div class="r hud"><span>Rythme cardiaque</span><span>148 BPM</span></div><svg width="100%" height="44" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,15 20,15 26,4 33,26 40,15 60,15 66,8 72,22 78,15 100,15" fill="none" stroke="#ff4a3d" stroke-opacity=".3" stroke-width="1.5" vector-effect="non-scaling-stroke"/><polyline class="hb" pathLength="100" points="0,15 20,15 26,4 33,26 40,15 60,15 66,8 72,22 78,15 100,15" fill="none" stroke="#ff4a3d" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
-<div class="c r rc"><div><div class="hud">Récupération · <span id="ix">1/6</span></div><div class="t tm" id="tm">01:00</div></div>
+<div class="r nm"><input class="t sn" id="sn" maxlength="30" placeholder="Nom de la séance" aria-label="Nom de la séance" autocomplete="off"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="flex:none"><path d="M3 15l1-4 8-8 3 3-8 8z" fill="none" stroke="#ff4a3d" stroke-width="1.6"/></svg></div>
+<div class="c g hrc" style="padding:8px 14px"><div class="r hud"><span>Rythme cardiaque</span><span>148 BPM</span></div><svg width="100%" height="30" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,15 20,15 26,4 33,26 40,15 60,15 66,8 72,22 78,15 100,15" fill="none" stroke="#ff4a3d" stroke-opacity=".3" stroke-width="1.5" vector-effect="non-scaling-stroke"/><polyline class="hb" pathLength="100" points="0,15 20,15 26,4 33,26 40,15 60,15 66,8 72,22 78,15 100,15" fill="none" stroke="#ff4a3d" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
+<div class="c r rc"><div><div class="hud">Récupération</div><div class="t tm" id="tm">01:00</div></div>
 <div class="kg"><button type="button" data-s="30">30s</button><button type="button" data-s="60" class="on">60s</button><button type="button" data-s="90">90s</button><button type="button" data-s="120">120s</button><button type="button" id="pp" aria-label="Pause ou lecture"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5l9 5.5-9 5.5z" fill="currentColor"/></svg></button><button type="button" id="rs" aria-label="Réinitialiser"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.8-3.8M13 1.5v3.7H9.3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button></div></div>
-<div class="grow ms" id="ms"></div>
+<div class="grow c blk" id="bk"></div>
+<div class="chips" id="ch"></div>
 <button class="b ghost" id="ae" type="button">+ Ajouter un exercice</button>
-<button class="b" id="vd" type="button">Valider la mesure</button><nav class="nav"><a class="" href="accueil.html">Accueil</a><a class="on" href="seance.html">Séance</a><a class=" soon" href="#" data-soon>Notes</a><a class=" soon" href="#" data-soon>Budget</a><a class=" soon" href="#" data-soon>Fioles</a></nav></div>
+<button class="b" id="vd" type="button">Valider la mesure</button><nav class="nav"><a class="" href="accueil.html">Accueil</a><a class=" soon" href="#" data-soon>Notes</a><a class=" soon" href="#" data-soon>Budget</a><a class=" soon" href="#" data-soon>Fioles</a></nav></div>
 <script src="forge.js"></script>
 <script>
 const $=i=>document.getElementById(i);
 
-const KEY='forge_seance',P=Forge.PLAN;
+const KEY='forge_seance',P=Forge.PLAN,MAXM=6,MAXE=10;
 let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
 if(!S||!S.ex||Date.now()-S.t0>432e5)S={nom:P.nom,t0:Date.now(),i:0,ex:P.ex.map(n=>({n,s:[{p:'',r:'',ok:false}]}))};
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}},cl=v=>String(v).replace(/[^0-9.]/g,'');
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}},cl=v=>String(v).replace(/[^0-9.]/g,''),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const CK='<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 4.5" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>';
+$('sn').value=S.nom;$('sn').oninput=e=>{S.nom=e.target.value;save()};
 function draw(){
- const e=S.ex[S.i];$('ex').textContent=e.n;$('ix').textContent=(S.i+1)+'/'+S.ex.length;
- $('ms').innerHTML=e.s.map((m,k)=>`<div class="c r mr${m.ok?' ok':''}" data-k="${k}"><span>Mesure ${k+1}</span><span class="in"><input class="pi" inputmode="decimal" autocomplete="off" placeholder="kg" value="${cl(m.p)}"${m.ok?' readonly':''}><span>×</span><input class="rp" inputmode="numeric" autocomplete="off" placeholder="rép" value="${cl(m.r)}"${m.ok?' readonly':''}><button type="button" class="cb" aria-label="Confirmer la mesure">${CK}</button></span></div>`).join('')+(e.s.length<8?'<button type="button" class="b sm ghost" id="am">+ Ajouter une mesure</button>':'');
+ S.i=Math.max(0,Math.min(S.i,S.ex.length-1));const e=S.ex[S.i];
+ $('bk').innerHTML=`<div class="bh"><input class="t en" id="en" maxlength="40" autocomplete="off" placeholder="Nom de l’exercice" aria-label="Nom de l’exercice" value="${esc(e.n)}"><button type="button" class="dx" id="dx" aria-label="Retirer l’exercice">×</button></div><div class="ms">${e.s.map((m,k)=>`<div class="c r mr${m.ok?' ok':''}" data-k="${k}"><span>Mesure ${k+1}</span><span class="in"><input class="pi" inputmode="decimal" autocomplete="off" placeholder="kg" value="${cl(m.p)}"${m.ok?' readonly':''}><span>×</span><input class="rp" inputmode="numeric" autocomplete="off" placeholder="rép" value="${cl(m.r)}"${m.ok?' readonly':''}><button type="button" class="cb" aria-label="Confirmer la mesure">${CK}</button></span></div>`).join('')}</div>${e.s.length<MAXM?'<button type="button" class="b sm ghost" id="am">+ Ajouter une mesure</button>':''}`;
+ $('ch').innerHTML=S.ex.map((x,k)=>`<button type="button" class="cp${k===S.i?' on':''}${x.s.some(m=>m.ok)?' dn':''}" data-e="${k}" aria-label="Exercice ${k+1}">${k+1}</button>`).join('');
  let a=0,b=0;S.ex.forEach(x=>x.s.forEach(m=>{b++;if(m.ok)a++}));$('an').textContent='Analyse en cours · '+a+'/'+b;save();
 }
-$('ms').addEventListener('input',e=>{const t=e.target,m=S.ex[S.i].s[+t.closest('.mr').dataset.k],p=t.classList.contains('pi');let v=t.value.replace(',','.').replace(/[^0-9.]/g,'');if(!p)v=v.replace('.','');t.value=v;m[p?'p':'r']=v;save()});
-$('ms').addEventListener('click',e=>{
- if(e.target.closest('#am')){S.ex[S.i].s.push({p:'',r:'',ok:false});draw();return}
- const b=e.target.closest('.cb');if(!b)return;const m=S.ex[S.i].s[+b.closest('.mr').dataset.k];
+$('bk').addEventListener('input',e=>{const t=e.target,x=S.ex[S.i];
+ if(t.id==='en'){x.n=t.value;save();return}
+ const m=x.s[+t.closest('.mr').dataset.k],p=t.classList.contains('pi');let v=t.value.replace(',','.').replace(/[^0-9.]/g,'');if(!p)v=v.replace('.','');t.value=v;m[p?'p':'r']=v;save()});
+$('bk').addEventListener('click',e=>{const x=S.ex[S.i];
+ if(e.target.closest('#am')){x.s.push({p:'',r:'',ok:false});draw();return}
+ if(e.target.closest('#dx')){if(x.s.some(m=>m.ok))return Forge.toast('Décoche d’abord les mesures confirmées');if(S.ex.length<2)return Forge.toast('Garde au moins un exercice');S.ex.splice(S.i,1);draw();return}
+ const b=e.target.closest('.cb');if(!b)return;const m=x.s[+b.closest('.mr').dataset.k];
  if(!m.ok&&!(+m.p>0&&+m.r>0))return Forge.toast('Remplis le poids et les répétitions');
  m.ok=!m.ok;draw();
 });
-$('pv').onclick=()=>{S.i=(S.i+S.ex.length-1)%S.ex.length;draw()};
-$('nx').onclick=()=>{S.i=(S.i+1)%S.ex.length;draw()};
-$('ae').onclick=()=>Forge.toast('Bientôt disponible'); // volontairement relié à rien pour l'instant
+$('ch').onclick=e=>{const b=e.target.closest('[data-e]');if(b){S.i=+b.dataset.e;draw()}};
+let tx=0;$('bk').addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+$('bk').addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>70&&document.activeElement.tagName!=='INPUT'){S.i+=d<0?1:-1;draw()}},{passive:true});
+$('ae').onclick=()=>{if(S.ex.length>=MAXE)return Forge.toast('10 exercices maximum');S.ex.push({n:'',s:[{p:'',r:'',ok:false}]});S.i=S.ex.length-1;draw();$('en').focus()};
 // Récupération
 const PL=`<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5l9 5.5-9 5.5z" fill="currentColor"/></svg>`,PA=`<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5h3v11H3zM8 1.5h3v11H8z" fill="currentColor"/></svg>`;let rem=60,last=60,run=false,end=0,iv;
 const mmss=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
@@ -51,8 +58,10 @@ $('pp').onclick=()=>{if(run){rem=(end-Date.now())/1000;run=false;clearInterval(i
 $('rs').onclick=()=>{run=false;clearInterval(iv);rem=last;$('tm').classList.remove('done');tdraw()};
 // Valider : enregistre la séance + vérifie les nouveaux PR
 $('vd').onclick=async()=>{
- const sets=[];S.ex.forEach((e,i)=>e.s.forEach((m,j)=>{if(m.ok)sets.push({exercice:e.n,ordre:i+1,serie:j+1,poids_kg:+m.p,reps:Math.round(+m.r)})}));
+ const sets=[];let bad=0;
+ S.ex.forEach((e,i)=>e.s.forEach((m,j)=>{if(!m.ok)return;if(!e.n.trim()&&!bad)bad=i+1;sets.push({exercice:e.n.trim(),ordre:i+1,serie:j+1,poids_kg:+m.p,reps:Math.round(+m.r)})}));
  if(!sets.length)return Forge.toast('Confirme au moins une mesure');
+ if(bad){S.i=bad-1;draw();return Forge.toast('Donne un nom à l’exercice '+bad)}
  const vd=$('vd');vd.disabled=true;vd.textContent='Enregistrement…';
  try{
   if(!await Forge.user())return;const db=Forge.db();
@@ -60,7 +69,7 @@ $('vd').onclick=async()=>{
   const pr=[];
   if(Math.max(...sets.map(x=>x.poids_kg))>(a.data?.[0]?.poids_kg||0))pr.push('charge');
   if(Math.max(...sets.map(x=>x.poids_kg*x.reps))>(b.data?.[0]?.volume||0))pr.push('poids × rép');
-  const s=await db.from('seances').insert({nom:S.nom,started_at:new Date(S.t0).toISOString(),ended_at:new Date().toISOString()}).select('id').single();
+  const s=await db.from('seances').insert({nom:(S.nom||'').trim()||'Séance',started_at:new Date(S.t0).toISOString(),ended_at:new Date().toISOString()}).select('id').single();
   if(s.error)throw s.error;
   const r=await db.from('seance_series').insert(sets.map(x=>({...x,seance_id:s.data.id})));
   if(r.error){await db.from('seances').delete().eq('id',s.data.id);throw r.error}
