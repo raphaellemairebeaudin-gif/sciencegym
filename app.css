@@ -74,15 +74,16 @@ html,body{overscroll-behavior:none}
 .pg>*{flex:none}.pg>.xl{overflow:visible}
 /* Espacement plus aéré */
 .app{gap:clamp(14px,2.4dvh,22px);padding-top:calc(var(--st) + 16px)}
-.c{padding:16px 18px}.row{gap:14px}.row>.c{padding:14px 12px}.sq .t{font-size:18px}
+.hs{padding:18px 20px}.c.pf{padding:0}.c.acc{padding:0}.row{gap:14px}.row>.c{padding:14px 12px}.sq .t{font-size:18px}
 .xl,.sc{gap:16px}.sc{gap:20px;padding-bottom:24px}
 .blk{gap:12px;padding:14px 16px}.ms,.blk .ms{gap:10px}.mr{height:50px}.rc{padding:14px 16px}
 .ur{margin:12px 0}.ap{padding:16px 18px}
 .hi{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;line-height:1.15}
-/* Bouton collé en bas */
-.dock{margin:0 -20px;border-radius:0;border-width:2px 0 0;height:54px;box-shadow:0 -8px 24px #a3180f55}
-#vd.dock{height:54px}.dock.nv{margin-bottom:-12px}
-.app.dk{padding-bottom:0;height:auto;bottom:0}.dk .dock{height:calc(56px + var(--sb));padding-bottom:var(--sb)}
+/* Boutons d'action : même apparence, fixes juste au-dessus de la barre du bas */
+#ae,#vd,#ok,#sv{height:44px}
+/* Accueil : tout tient dans la page, le rapport en vedette prend la place restante */
+.app>.rp{flex:1 1 0;min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:8px}
+.rp #rt{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;margin:0}
 /* Formulaires */
 .fld{display:flex;flex-direction:column;gap:8px}.fld label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ff9a92}
 .fi{width:100%;height:48px;padding:0 14px;background:#1a0809;border:1px solid #ff4a3d88;border-radius:6px;color:#ffd9d5;font:500 16px 'Space Grotesk',sans-serif;outline:0;-webkit-appearance:none;appearance:none}
